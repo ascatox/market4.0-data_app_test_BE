@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
-public class WebSockeMessageStreamerConfig {
+public class WebSocketMessageStreamerConfig {
 
     @Bean
     public FileRecreatorBeanExecutor fileRecreatorBeanExecutor() throws SchedulerException {
@@ -20,6 +20,7 @@ public class WebSockeMessageStreamerConfig {
         fileRecreatorBeanExecutor.setPort(9000); //optional default 9000
         //fileRecreatorBeanExecutor.setKeystorePassword("ssl-server.jks"); //optional default classpath: ssl-server.jks
         //fileRecreatorBeanExecutor.setKeystorePassword("password");
+        //fileRecreatorBeanExecutor.setPath("/incoming-data-ws");
         return fileRecreatorBeanExecutor;
     }
 

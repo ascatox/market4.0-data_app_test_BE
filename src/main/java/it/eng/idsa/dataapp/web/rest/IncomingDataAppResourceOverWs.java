@@ -2,6 +2,7 @@ package it.eng.idsa.dataapp.web.rest;
 
 import it.eng.idsa.dataapp.service.MultiPartMessageService;
 import it.eng.idsa.streamer.WebSocketServerManager;
+import nl.tno.ids.common.multipart.MultiPartMessage;
 import org.apache.http.HttpEntity;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,13 @@ public class IncomingDataAppResourceOverWs implements PropertyChangeListener {
             // Put check sum in the payload
             String payload = "{\"checksum\":\"ABC123\"}";
             // prepare multipart message.
-            HttpEntity entity = multiPartMessageService.createMultipartMessage(header, payload);
-            responseString = EntityUtils.toString(entity, "UTF-8");
+            // HttpEntity entity = multiPartMessageService.createMultipartMessage(header, payload);
+            // responseString = EntityUtils.toString(entity, "UTF-8");
+            responseString = new MultiPartMessage.Builder()
+                    .setHeader(header)
+                    .setPayload(payload)
+                    .build()
+                    .toString();
         } catch (Exception e) {
             e.printStackTrace();
             //TODO Rejection
