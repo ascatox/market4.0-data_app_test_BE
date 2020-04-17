@@ -29,3 +29,5 @@ build/
 
 ### VS Code ###
 .vscode/
+/Dockerfile
+/dockerize.sh
