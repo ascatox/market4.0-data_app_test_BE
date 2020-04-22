@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author Antonio Scatoloni
@@ -41,8 +44,9 @@ public class IncomingDataAppResourceOverWs implements PropertyChangeListener {
         String responseString = null;
         try {
             String header = multiPartMessageService.getHeader(responseMessage);
-            // Put check sum in the payload
-            String payload = "{\"checksum\":\"ABC123\"}";
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date date = new Date();
+            String payload="{\"checksum\":\"ABC123 " + dateFormat.format(date) + "\"}";
             // prepare multipart message.
             responseString = new MultiPartMessage.Builder()
                     .setHeader(header)
