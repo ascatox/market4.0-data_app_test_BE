@@ -15,11 +15,13 @@ public class ServerPortCustomizer implements WebServerFactoryCustomizer<Configur
     private boolean isEnabledWebSocket;
     @Value("${server.port}")
     private int port;
+    @Value("${application.fileSenderPort}")
+    private int fileSenderPort;
 
     @Override
     public void customize(ConfigurableWebServerFactory factory) {
         if (isEnabledWebSocket)
-            factory.setPort(9000); //0 switch off the Tomcat server
+            factory.setPort(fileSenderPort); //0 switch off the Tomcat server
         else {
             factory.setPort(port);
         }
