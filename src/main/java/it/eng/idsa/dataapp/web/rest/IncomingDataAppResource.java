@@ -129,8 +129,8 @@ public class IncomingDataAppResource {
 		logger.info("payload lenght="+payload.length());
 		
 		// Recreate the file
-		recreateFileServiceImpl.recreateTheFile(payload);
-		logger.info("The file is recreated from the MultipartMessage");
+		//recreateFileServiceImpl.recreateTheFile(payload);
+		//logger.info("The file is recreated from the MultipartMessage");
 		
 		// Put check sum in the payload
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
