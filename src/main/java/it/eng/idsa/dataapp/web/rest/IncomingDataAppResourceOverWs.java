@@ -6,6 +6,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import it.eng.idsa.dataapp.service.MultiPartMessageService;
@@ -19,6 +21,7 @@ import it.eng.idsa.streamer.WebSocketServerManager;
  */
 
 public class IncomingDataAppResourceOverWs implements PropertyChangeListener {
+    private static final Logger logger = LogManager.getLogger(IncomingDataAppResourceOverWs.class);
 
     @Autowired
     private MultiPartMessageService multiPartMessageService;
@@ -44,6 +47,7 @@ public class IncomingDataAppResourceOverWs implements PropertyChangeListener {
     private String createDummyResponse(String responseMessageInput) {
         String responseMessageString = null;
         try {
+            logger.info("Message arrived from ECC Consumer: "+ responseMessageInput.substring(1000));
             String header = multiPartMessageService.getHeader(responseMessageInput);
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date date = new Date();
