@@ -47,7 +47,7 @@ public class IncomingDataAppResourceOverWs implements PropertyChangeListener {
     private String createDummyResponse(String responseMessageInput) {
         String responseMessageString = null;
         try {
-            logger.info("Message arrived from ECC Consumer: "+ responseMessageInput);
+            logger.info("Message arrived from ECC Consumer: "+ responseMessageInput.substring(0, 500));
             logger.info("END of Message arrived from ECC Consumer");
             String header = multiPartMessageService.getHeader(responseMessageInput);
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
