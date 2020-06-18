@@ -61,8 +61,7 @@ public class IncomingDataAppResourceOverWs implements PropertyChangeListener {
     		responseMessageString = MultipartMessageProcessor.multipartMessagetoString(responseMessage, false);
             
         } catch (Exception e) {
-            e.printStackTrace();
-            //TODO Rejection
+            logger.error("Error encountered in creating Response for WSS communication with stack: " + e.getMessage());
         }
         return responseMessageString;
     }
