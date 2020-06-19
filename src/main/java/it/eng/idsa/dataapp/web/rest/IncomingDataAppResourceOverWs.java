@@ -26,20 +26,10 @@ public class IncomingDataAppResourceOverWs implements PropertyChangeListener {
     @Autowired
     private MultiPartMessageService multiPartMessageService;
 
-    private String responseMessage;
-
-    public String getResponseMessage() {
-        return responseMessage;
-    }
-
-    public void setResponseMessage(String responseMessage) {
-        this.responseMessage = responseMessage;
-    }
-
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        this.setResponseMessage((String) evt.getNewValue());
-        WebSocketServerManager.getMessageWebSocketResponse().sendResponse(createDummyResponse(getResponseMessage()));
+        String responseMessage = (String) evt.getNewValue();
+        WebSocketServerManager.getMessageWebSocketResponse().sendResponse(createDummyResponse(responseMessage));
     }
 
 
